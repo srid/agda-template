@@ -8,7 +8,7 @@ nix develop -c agda -v 2 src/hello.agda
 
 ## VSCode
 
-- Install direnv, and nix-direnv.
+- Install direnv, and [nix-direnv](https://github.com/nix-community/nix-direnv).
 - Run "Agda: Load" command followed by "Agda: Compile" in `hello.agda` to sanity-check the environment.
 
 ## Tasks

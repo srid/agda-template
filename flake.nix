@@ -10,7 +10,7 @@
           pkgs = import nixpkgs { inherit system; };
           agdaPkgs = 
             if system == "aarch64-darwin" 
-              then import nixpkgs { system = "x86_64-darwin"; }
+              then import nixpkgs { system = "x86_64-darwin"; }  # Rosetta (Agda broken on M1)
               else pkgs;
         in
         {
