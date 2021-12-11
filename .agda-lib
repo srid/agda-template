@@ -1,0 +1,5 @@
+name: agda-template
+include:
+  src
+depend:
+  standard-library
