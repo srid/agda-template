@@ -1,3 +1,5 @@
 {
-    "agdaMode.connection.agdaLanguageServer": true
+    "agdaMode.connection.agdaLanguageServer": true,
+    "editor.formatOnSave": true,
+    "nixEnvSelector.nixFile": "${workspaceRoot}/shell.nix"
 }
