@@ -8,16 +8,19 @@
       (system:
         let
           pkgs = import nixpkgs { inherit system; };
-          rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
+          agdaPkgs = 
+            if system == "aarch64-darwin" 
+              then import nixpkgs { system = "x86_64-darwin"; }
+              else pkgs;
         in
         {
           devShell = pkgs.mkShell {
             buildInputs = [
               pkgs.nixpkgs-fmt
-              (rosettaPkgs.agda.withPackages (ps: [
+              (agdaPkgs.agda.withPackages (ps: [
                 ps.standard-library
               ]))
-              # (rosettaPkgs.haskellPackages.callHackage "agda-language-server" "0.2.1" {})
+              # (agdaPkgs.haskellPackages.callHackage "agda-language-server" "0.2.1" {})
             ];
           };
         }
