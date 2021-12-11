@@ -17,6 +17,7 @@
               (rosettaPkgs.agda.withPackages (ps: [
                 ps.standard-library
               ]))
+              # (rosettaPkgs.haskellPackages.callHackage "agda-language-server" "0.2.1" {})
             ];
           };
         }
