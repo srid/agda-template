@@ -6,20 +6,19 @@
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem
       (system:
-        let pkgs = import nixpkgs { 
-          system = 
-            (if system == "aarch64-darwin" 
-              then "x86_64-darwin" 
-              else system);
-        };  
-        in {
+        let
+          pkgs = import nixpkgs { inherit system; };
+          rosettaPkgs = import nixpkgs { system = "x86_64-darwin"; };
+        in
+        {
           devShell = pkgs.mkShell {
-                buildInputs = [
-                  (pkgs.agda.withPackages (ps: [
-                    ps.standard-library
-                  ]))
-                ];
-            };
+            buildInputs = [
+              pkgs.nixpkgs-fmt
+              (rosettaPkgs.agda.withPackages (ps: [
+                ps.standard-library
+              ]))
+            ];
+          };
         }
       );
 }
