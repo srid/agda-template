@@ -6,16 +6,17 @@ WIP
 nix develop -c agda -v 2 src/hello.agda
 ```
 
-## VSCode
+## Editor support
 
-- Run "Agda: Load" command followed by "Agda: Compile" in `hello.agda` to sanity-check the environment.
+### VSCode
 
-## Tasks
+C'est un cauchemar.
 
-- [x] Fix `error: a 'x86_64-darwin' with features {} is required to build` on m1 macOS
-- [ ] Emacs setup 
-    - direnv doesn't work
-- [ ] VSCode
-    - [x] direnv
-    - [x] agda-mode https://github.com/banacorn/agda-mode-vscode/issues/81
-    - [ ] agda-language-server: broken; can't build - `error: a 'x86_64-darwin' with features {} is required to build
+https://github.com/banacorn/agda-mode-vscode/issues/81
+
+### Emacs 
+
+Agda people use Emacs, so this is probably what you have to use. 
+
+In Doom Emacs' init.el, add `(direnv)` and `(agda +local)` features. You **must** have Agda installed globally, because Doom's Agda configuration is [hairbrained](https://github.com/hlissner/doom-emacs/blob/f458f9776049fd7e9523318582feed682e7d575c/modules/lang/agda/config.el#L3-L8) to not work with direnv, which we need with graphical Emacs (on macOS). It goes without saying that you need `direnv` and `nix-direnv` installed and configured.
+
