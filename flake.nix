@@ -18,14 +18,23 @@
             if system == "aarch64-darwin"
             then import nixpkgs { system = "x86_64-darwin"; }  # Rosetta (Agda broken on M1)
             else pkgs;
+          # https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/agda.section.md
+          myAgda = (agdaPkgs.agda.withPackages (ps: [
+            ps.standard-library
+          ]));
         in
         {
+          defaultPackage = agdaPkgs.agdaPackages.mkDerivation {
+            pname = "agda-template";
+            version = "0.1";
+            meta = { };
+            src = ./.;
+            buildInputs = [ myAgda ];
+          };
           devShell = pkgs.mkShell {
             buildInputs = [
               pkgs.nixpkgs-fmt
-              (agdaPkgs.agda.withPackages (ps: [
-                ps.standard-library
-              ]))
+              myAgda
               # (agdaPkgs.haskellPackages.callHackage "agda-language-server" "0.2.1" {})
             ];
           };

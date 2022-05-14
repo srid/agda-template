@@ -2,8 +2,10 @@
 
 WIP
 
-```
+```sh-session
 nix develop -c agda -v 2 src/hello.agda
+# or
+nix build
 ```
 
 ## Editor support

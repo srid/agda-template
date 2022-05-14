@@ -1,3 +1,4 @@
 *.agdai
 .direnv
 src/MAlonzo
+result
